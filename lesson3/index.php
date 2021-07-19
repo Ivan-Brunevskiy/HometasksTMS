@@ -15,7 +15,8 @@ echo "<br>";
 
 //2. Найти самое длинное слово в строке
 $sentens = "я сейчас пишу офигенную функцию";
-$arrS = explode(" ", $sentens);
+$textA = preg_replace("/[^\p{L}\p{N}\s]/u", "", $sentens);
+$arrS = explode(" ", $textA);
 
 foreach ($arrS as $key => $value) {
     $int = mb_strlen($value);
@@ -26,13 +27,14 @@ echo array_shift($mas) . "<br>";
 
 
 //3. Посчтитать количество заглавных и прописных букв в строке
-$text = "I am DUinG my HOMEwork";
-$textAll = str_replace(" ", "", $text);
-$textSmall = preg_replace("![A-Z|А-Я]!", "", $textAll);
-$textBig = preg_replace("![a-z|а-я]!", "", $textAll);
 
-echo "заглавных букв в строке - " . strlen($textBig) . "<br>";
-echo "прописных букв в строке - " . strlen($textSmall) . "<br>";
+$text = "@I am DUinG my HOME!work сиДЯ) за КОМПьютером@";
+//$textAll = str_replace(" ", "", $text);
+$textAll = preg_replace("/[^\p{L}\p{N}\s]/u", "", $text);
+$textSmall = preg_replace("/[A-ZА-Я]/u", "", $textAll);
+$textBig = preg_replace("/[a-zа-я]/u", "", $textAll);
+echo "заглавных букв в строке - " . mb_strlen($textBig) . "<br>";
+echo "прописных букв в строке - " . mb_strlen($textSmall) . "<br>";
 
 
 //4. Посчитать количество четных и нечетных элементов массива
