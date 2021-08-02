@@ -25,9 +25,9 @@ day($day);
 //2. Создайте функцию, которая обрезает строку до нужного размера.
 //  Необходимо учесть, что слово в конце строки не должно быть обрезано
 $string = "Необходимо учесть, что слово в конце строки не должно быть обрезано";
-function cut_string($string)
+function cut_string($string, $num)
 {
-    $str = mb_substr($string, 0, 33);
+    $str = mb_substr($string, 0, $num);
     $arr1 = explode(" ", $string);
     $arr2 = explode(" ", $str);
     $last_key = array_key_last($arr2);
@@ -41,7 +41,7 @@ function cut_string($string)
         return $str;
     }
 }
-cut_string($string);
+cut_string($string, 33);
 
 //3.  Написать функцию, которая будет менять порядок слов в строке на обратный
 $string  = "my love book";
@@ -76,6 +76,18 @@ average($array);
 
 //5.  Написать функцию, которая генерирует массив случайных значений.
 // Количество элементов массива передается в качестве аргумента
+// Вариант 1
+function random_array1($num){
+    $arr = [];
+    for($i = 0; count($arr) < $num; $i++)
+        $arr[] = rand();
+
+    var_dump($arr);
+    return $arr;
+}
+random_array1(5);
+
+//Вариант 2
 function random_array($num)
 {
     $arr1 = [];
